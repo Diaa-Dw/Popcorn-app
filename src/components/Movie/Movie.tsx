@@ -1,4 +1,5 @@
-import { MovieProps } from "../../../types";
+import { MovieProps } from "../../types";
+import { StyledMovie } from "./Movie.style";
 
 function Movie({ movie, setSelectedMovieId }: MovieProps) {
   const onSelectMovie = () => {
@@ -7,7 +8,7 @@ function Movie({ movie, setSelectedMovieId }: MovieProps) {
     );
   };
   return (
-    <li key={movie.imdbID} onClick={onSelectMovie}>
+    <StyledMovie key={movie.imdbID} onClick={onSelectMovie}>
       <img src={movie.Poster} alt={`${movie.Title} poster`} />
       <h3>{movie.Title}</h3>
       <div>
@@ -16,7 +17,7 @@ function Movie({ movie, setSelectedMovieId }: MovieProps) {
           <span>{movie.Year}</span>
         </p>
       </div>
-    </li>
+    </StyledMovie>
   );
 }
 

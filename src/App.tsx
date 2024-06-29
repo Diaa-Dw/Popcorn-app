@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Header from "./components/Header/Header";
 import Main from "./components/Main/Main";
 import { GlobalStyles } from "./style/global";
@@ -7,13 +7,14 @@ import { darkTheme, lightTheme } from "./style/theme";
 import Box from "./components/Box/Box";
 import MovieList from "./components/MovieList/MovieList";
 import Summary from "./components/Summary/Summary";
-import WatchedList from "./components/WatchedList";
+import WatchedList from "./components/WatchedList/WatchedList";
 import Logo from "./components/Logo/Logo";
 import Search from "./components/Search/Search";
 import ToggleTheme from "./components/ToggleThem/ToggleTheme";
 import Spinner from "./components/Spinner/Spinner";
 import Error from "./components/Error/Error";
 import { useFetch } from "./hooks/useFetch";
+import MovieDetails from "./components/MovieDetails/MovieDetails";
 
 // const tempMovieData = [
 //   {
@@ -39,38 +40,41 @@ import { useFetch } from "./hooks/useFetch";
 //   },
 // ];
 
-// const tempWatchedData = [
-//   {
-//     imdbID: "tt1375666",
-//     Title: "Inception",
-//     Year: "2010",
-//     Poster:
-//       "https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_SX300.jpg",
-//     runtime: 148,
-//     imdbRating: 8.8,
-//     userRating: 10,
-//   },
-//   {
-//     imdbID: "tt0088763",
-//     Title: "Back to the Future",
-//     Year: "1985",
-//     Poster:
-//       "https://m.media-amazon.com/images/M/MV5BZmU0M2Y1OGUtZjIxNi00ZjBkLTg1MjgtOWIyNThiZWIwYjRiXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg",
-//     runtime: 116,
-//     imdbRating: 8.5,
-//     userRating: 9,
-//   },
-// ];
+const tempWatchedData = [
+  {
+    imdbID: "tt1375666",
+    Title: "Inception",
+    Year: "2010",
+    Poster:
+      "https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_SX300.jpg",
+    runtime: 148,
+    imdbRating: 8.8,
+    userRating: 10,
+  },
+  {
+    imdbID: "tt0088763",
+    Title: "Back to the Future",
+    Year: "1985",
+    Poster:
+      "https://m.media-amazon.com/images/M/MV5BZmU0M2Y1OGUtZjIxNi00ZjBkLTg1MjgtOWIyNThiZWIwYjRiXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg",
+    runtime: 116,
+    imdbRating: 8.5,
+    userRating: 9,
+  },
+];
 
 export default function App() {
-  const [watched, setWatched] = useState([]);
+  const [watched, setWatched] = useState(tempWatchedData);
   const [query, setQuery] = useState("");
   const [theme, setTheme] = useState("dark");
   const [selectedMovieId, setSelectedMovieId] = useState("tt2582846");
   console.log("🚀 ~ App ~ selectedMovieId:", selectedMovieId);
-
   const [movies, isLoading, error] = useFetch(query);
   // console.log("🚀 ~ App ~ movies:", movies);
+
+  const handleCloseMovie = () => {
+    setSelectedMovieId("");
+  };
 
   return (
     <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
@@ -96,8 +100,17 @@ export default function App() {
           </Box>
 
           <Box>
-            <Summary watched={watched} />
-            <WatchedList watched={watched} />
+            {selectedMovieId ? (
+              <MovieDetails
+                selectedMovieId={selectedMovieId}
+                onCloseMovie={handleCloseMovie}
+              />
+            ) : (
+              <>
+                <Summary watched={watched} />
+                <WatchedList watched={watched} />
+              </>
+            )}
           </Box>
         </Main>
       </div>

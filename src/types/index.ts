@@ -7,6 +7,24 @@ export type movieProps = {
   Poster: string;
 };
 
+export type WachedMovieProps = {
+  imdbID: string;
+  Title: string;
+  Year: string;
+  Poster: string;
+  runtime: number;
+  imdbRating: number;
+  userRating: number;
+};
+
+export type WachedMoviesProps = {
+  watched: WachedMovieProps[] | [];
+};
+
+export type WatchedMovieProps = {
+  movie: WachedMovieProps;
+};
+
 export type MoviesProps = {
   movies: movieProps[] | [];
   setSelectedMovieId: Dispatch<SetStateAction<string>>;
@@ -59,4 +77,9 @@ export type StarProps = {
   color: string;
   onRating: () => void;
   size: number;
+};
+
+export type MovieDetailsProps = {
+  selectedMovieId: string;
+  onCloseMovie: () => void;
 };

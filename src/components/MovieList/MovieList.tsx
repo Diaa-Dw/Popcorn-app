@@ -1,4 +1,4 @@
-import Movie from "../Main/Movie/Movie";
+import Movie from "../Movie/Movie";
 import { MoviesProps } from "../../types";
 import { List } from "./MovieList.style";
 

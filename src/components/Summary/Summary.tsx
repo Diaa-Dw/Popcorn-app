@@ -2,8 +2,9 @@ import React from "react";
 
 import { average } from "../../utils/average";
 import { StyledSummary } from "./Summary.style";
+import { WachedMoviesProps } from "../../types";
 
-function Summary({ watched }) {
+function Summary({ watched }: WachedMoviesProps) {
   const avgImdbRating = average(watched.map((movie) => movie.imdbRating));
   const avgUserRating = average(watched.map((movie) => movie.userRating));
   const avgRuntime = average(watched.map((movie) => movie.runtime));

@@ -1,9 +1,8 @@
-import React, { useState } from "react";
-import ListBox from "./ListBox/ListBox";
-import WatchedBox from "./WatchedBox";
+import { ChildrenProps } from "../../types";
+import { StyledMain } from "./Main.style";
 
-function Main({ children }) {
-  return <main className='main'>{children}</main>;
+function Main({ children }: ChildrenProps) {
+  return <StyledMain>{children}</StyledMain>;
 }
 
 export default Main;
