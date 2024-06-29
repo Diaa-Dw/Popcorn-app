@@ -1,9 +1,7 @@
-import { useState } from "react";
 import { StyledSearch } from "./Search.style";
+import { SearchProps } from "../../types";
 
-function Search() {
-  const [query, setQuery] = useState("");
-
+function Search({ query, setQuery }: SearchProps) {
   return (
     <StyledSearch
       className='search'

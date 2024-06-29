@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from "react";
+
 export type movieProps = {
   imdbID: string;
   Title: string;
@@ -5,10 +7,56 @@ export type movieProps = {
   Poster: string;
 };
 
-export type HeaderProps = {
-  movies: movieProps[];
+export type MoviesProps = {
+  movies: movieProps[] | [];
+  setSelectedMovieId: Dispatch<SetStateAction<string>>;
 };
 
-export type BoxProps = {
+export type ChildrenProps = {
   children: React.ReactNode;
+};
+
+export type ErrorProps = {
+  errorContext: string;
+};
+
+export type LogoProps = {
+  theme: string;
+};
+
+export type SearchProps = {
+  query: string;
+  setQuery: Dispatch<SetStateAction<string>>;
+};
+
+export type ToggleThemeProps = {
+  setTheme: Dispatch<SetStateAction<string>>;
+};
+
+export type MovieProps = {
+  movie: movieProps;
+  setSelectedMovieId: Dispatch<SetStateAction<string>>;
+};
+
+export type UseFetchProps = [
+  movies: movieProps[],
+  isLoading: boolean,
+  error: string | null
+];
+
+export type RatingStarsProps = {
+  maxRating: number;
+  onSetRating: Dispatch<SetStateAction<number | null>>;
+  color: string;
+  defaultRating: number;
+  size: number;
+};
+
+export type StarProps = {
+  onHoverIn: () => void;
+  onHoverOut: () => void;
+  full: boolean;
+  color: string;
+  onRating: () => void;
+  size: number;
 };

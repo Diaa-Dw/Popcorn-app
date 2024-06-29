@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { StyledBox } from "./Box.style";
-import { BoxProps } from "../../types";
+import { ChildrenProps } from "../../types";
 
-function Box({ children }: BoxProps) {
+function Box({ children }: ChildrenProps) {
   const [isOpen, setIsOpen] = useState(true);
 
   return (

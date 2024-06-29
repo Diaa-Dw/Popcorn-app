@@ -1,5 +1,3 @@
-import React from "react";
-
 function WatchedList({ watched }) {
   return (
     <ul className='list'>

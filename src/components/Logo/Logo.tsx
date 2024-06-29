@@ -1,9 +1,10 @@
+import { LogoProps } from "../../types";
 import { StyledLogo } from "./Logo.style";
 
-function Logo() {
+function Logo({ theme }: LogoProps) {
   return (
     <StyledLogo className='logo'>
-      <img src='logo.png' alt='logo' />
+      <img src={`${theme}_logo.png`} alt='logo' />
     </StyledLogo>
   );
 }

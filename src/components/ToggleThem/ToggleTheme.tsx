@@ -1,6 +1,7 @@
+import { ToggleThemeProps } from "../../types";
 import { StyledToggleTheme } from "./ToggleTheme.style";
 
-function ToggleTheme({ setTheme }) {
+function ToggleTheme({ setTheme }: ToggleThemeProps) {
   const onToggleTheme = () => {
     setTheme((prevTheme) => (prevTheme === "dark" ? "light" : "dark"));
   };
