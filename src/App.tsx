@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Header from "./components/Header/Header";
 import Main from "./components/Main/Main";
 import { GlobalStyles } from "./style/global";
@@ -65,17 +65,27 @@ const tempWatchedData = [
 
 export default function App() {
   const [watched, setWatched] = useState(tempWatchedData);
+  console.log("🚀 ~ App ~ setWatched:", setWatched);
   const [query, setQuery] = useState("");
   const [theme, setTheme] = useState("dark");
-  const [selectedMovieId, setSelectedMovieId] = useState("tt2582846");
-  console.log("🚀 ~ App ~ selectedMovieId:", selectedMovieId);
-  const [movies, isLoading, error] = useFetch(query);
+  const [selectedMovieId, setSelectedMovieId] = useState<string>("");
+  // console.log("🚀 ~ App ~ selectedMovieId:", selectedMovieId);
+  const [zIndex, setZIndex] = useState(100);
+  const [movies, isLoading, error] = useFetch(query, setZIndex);
   // console.log("🚀 ~ App ~ movies:", movies);
 
   const handleCloseMovie = () => {
     setSelectedMovieId("");
   };
 
+  const handleSelectMovie = (id: string) => {
+    setSelectedMovieId(id);
+    setZIndex(100);
+  };
+
+  const handleBackButton = () => {
+    setZIndex(100);
+  };
   return (
     <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
       <GlobalStyles />
@@ -94,12 +104,13 @@ export default function App() {
             ) : (
               <MovieList
                 movies={movies}
-                setSelectedMovieId={setSelectedMovieId}
+                handleBackButton={handleBackButton}
+                setSelectedMovieId={handleSelectMovie}
               />
             )}
           </Box>
 
-          <Box>
+          <Box styles={{ zIndex: zIndex }}>
             {selectedMovieId ? (
               <MovieDetails
                 selectedMovieId={selectedMovieId}

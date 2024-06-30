@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { respondTo } from "../../style/_responsive";
 
 export const StyledHeader = styled.nav`
   display: grid;
@@ -13,4 +14,10 @@ export const StyledHeader = styled.nav`
   );
   border-radius: 0.9rem;
   border: 0.2rem solid ${({ theme }) => theme.colors.primaryLight};
+
+  ${respondTo.medium`
+  height: 6.2rem;
+  padding: 0 1.2rem;
+
+  `}
 `;

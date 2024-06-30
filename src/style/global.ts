@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import { respondTo } from "./_responsive";
 
 export const GlobalStyles = createGlobalStyle`
 * {
@@ -18,6 +19,11 @@ body {
   color: ${({ theme }) => theme.colors.text};
   background-color: ${({ theme }) => theme.colors.background900};
   padding: 2.4rem;
+
+  ${respondTo.medium`
+  padding: 0.4rem;
+
+  `}
 }
 
   // Additional global styles can go here

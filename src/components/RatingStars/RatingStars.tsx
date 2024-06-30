@@ -31,7 +31,8 @@ function RatingStars({
           size={size}
         />
       ))}
-      <span>{rating}</span>
+
+      <span className='rating-count'>{tempRating || rating || ""}</span>
     </Rating>
   );
 }

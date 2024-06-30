@@ -53,7 +53,7 @@ export const StyledMovieDetails = styled.div`
 
   .btn-add {
     background-color: ${({ theme }) => theme.colors.primary};
-    color: ${({ theme }) => theme.colors.textDark};
+    color: ${({ theme }) => theme.colors.secondryText};
     border: none;
     border-radius: 10rem;
     font-size: 1.4rem;
@@ -64,6 +64,6 @@ export const StyledMovieDetails = styled.div`
   }
 
   .btn-add:hover {
-    background-color: ${({ theme }) => theme.colors.primaryLight};
+    opacity: 0.8;
   }
 `;

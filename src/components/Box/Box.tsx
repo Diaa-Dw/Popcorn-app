@@ -1,15 +1,16 @@
 import { useState } from "react";
 import { StyledBox } from "./Box.style";
-import { ChildrenProps } from "../../types";
+import { BoxProps } from "../../types";
 
-function Box({ children }: ChildrenProps) {
+function Box({ children, styles }: BoxProps) {
   const [isOpen, setIsOpen] = useState(true);
 
   return (
-    <StyledBox>
+    <StyledBox style={{ ...styles }}>
       <button className='btn-toggle' onClick={() => setIsOpen((open) => !open)}>
         {isOpen ? "–" : "+"}
       </button>
+
       {isOpen && children}
     </StyledBox>
   );

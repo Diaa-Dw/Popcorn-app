@@ -1,9 +1,12 @@
-import { useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { UseFetchProps } from "../types";
 
 const OMDP_API = import.meta.env.VITE_OMDB_API;
 
-export const useFetch = (query: string): UseFetchProps => {
+export const useFetch = (
+  query: string,
+  setZIndex: Dispatch<SetStateAction<number>>
+): UseFetchProps => {
   const [movies, setMovies] = useState([]);
 
   const [isLoading, setIsLoading] = useState(false);
@@ -15,6 +18,7 @@ export const useFetch = (query: string): UseFetchProps => {
     const fetchData = async () => {
       if (query.length <= 2) return;
       try {
+        setZIndex(1);
         setIsLoading(true);
         const response = await fetch(
           `http://www.omdbapi.com/?apikey=${OMDP_API}&s=${query}`,

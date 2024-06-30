@@ -17,6 +17,19 @@ export type WachedMovieProps = {
   userRating: number;
 };
 
+export type SelectedMovieProps = {
+  Title: string;
+  Year: string;
+  Poster: string;
+  Runtime: string;
+  Plot: string;
+  Released: string;
+  Actors: string;
+  Director: string;
+  Genre: string;
+  imdbRating: string;
+};
+
 export type WachedMoviesProps = {
   watched: WachedMovieProps[] | [];
 };
@@ -27,13 +40,22 @@ export type WatchedMovieProps = {
 
 export type MoviesProps = {
   movies: movieProps[] | [];
-  setSelectedMovieId: Dispatch<SetStateAction<string>>;
+  setSelectedMovieId: (id: string)=>void;
+  handleBackButton: ()=>void
 };
 
 export type ChildrenProps = {
   children: React.ReactNode;
 };
 
+type styles{
+  zIndex: number;
+}
+
+export type BoxProps = {
+  children: React.ReactNode;
+  styles?: styles;
+};
 export type ErrorProps = {
   errorContext: string;
 };
@@ -65,9 +87,9 @@ export type UseFetchProps = [
 export type RatingStarsProps = {
   maxRating: number;
   onSetRating: Dispatch<SetStateAction<number | null>>;
-  color: string;
-  defaultRating: number;
-  size: number;
+  color?: string;
+  defaultRating?: number;
+  size?: number;
 };
 
 export type StarProps = {
@@ -82,4 +104,14 @@ export type StarProps = {
 export type MovieDetailsProps = {
   selectedMovieId: string;
   onCloseMovie: () => void;
+};
+
+export type useRatingProps = {
+  userRating: Dispatch<SetStateAction<null | number>>;
+};
+
+export type useFetchMovieProps = {
+  movie: SelectedMovieProps | [];
+  isLoading: boolean;
+  error: string | null;
 };

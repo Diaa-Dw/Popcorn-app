@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { respondTo } from "../../style/_responsive";
 
 export const StyledLogo = styled.div`
   display: flex;
@@ -8,4 +9,11 @@ export const StyledLogo = styled.div`
   img {
     width: 5.5rem;
   }
+
+  ${respondTo.medium`
+  
+  img{
+  width: 4.5rem
+  }
+  `}
 `;
