@@ -1,6 +1,13 @@
-import { css } from "styled-components";
+import { css, CSSProp } from "styled-components";
 
-const breakpoints = {
+interface BreakpointsProps {
+  small: string;
+  medium: string;
+  large: string;
+  xlarge: string;
+}
+
+const breakpoints: BreakpointsProps = {
   small: "576px",
   medium: "868px",
   large: "992px",
@@ -10,12 +17,13 @@ const breakpoints = {
 // Media query generator function
 export const respondTo = Object.keys(breakpoints).reduce(
   (accumulator, label) => {
-    accumulator[label] = (...args) => css`
-      @media (max-width: ${breakpoints[label]}) {
+    const key = label as keyof BreakpointsProps;
+    accumulator[key] = (...args: any[]) => css`
+      @media (max-width: ${breakpoints[key]}) {
         ${css(...args)}
       }
     `;
     return accumulator;
   },
-  {}
+  {} as { [key in keyof BreakpointsProps]: (...args: any[]) => CSSProp }
 );
