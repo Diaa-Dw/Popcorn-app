@@ -4,7 +4,7 @@ import { SelectedMovieProps, useFetchMovieProps } from "../types";
 const OMDP_API = import.meta.env.VITE_OMDB_API;
 
 export const useFetchMovie = (selectedMovieId: string): useFetchMovieProps => {
-  const [movie, setMovie] = useState<SelectedMovieProps | []>([]);
+  const [movie, setMovie] = useState<SelectedMovieProps>({});
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<null | string>(null);
 

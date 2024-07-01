@@ -1,7 +1,13 @@
 import { WatchedMovieProps } from "../../types";
 import { StyledWatchedMovie } from "./WatchedMovie.style";
 
-function WatchedMovie({ movie }: WatchedMovieProps) {
+function WatchedMovie({
+  movie,
+  onDeleteMovieFromWatchList,
+}: WatchedMovieProps) {
+  const handleDeleteMovie = () => {
+    onDeleteMovieFromWatchList(movie.imdbID);
+  };
   return (
     <StyledWatchedMovie key={movie.imdbID}>
       <img src={movie.Poster} alt={`${movie.Title} poster`} />
@@ -19,6 +25,10 @@ function WatchedMovie({ movie }: WatchedMovieProps) {
           <span>⏳</span>
           <span>{movie.runtime} min</span>
         </p>
+
+        <button className='btn-delete' onClick={handleDeleteMovie}>
+          X
+        </button>
       </div>
     </StyledWatchedMovie>
   );

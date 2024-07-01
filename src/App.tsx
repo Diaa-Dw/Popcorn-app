@@ -15,6 +15,8 @@ import Spinner from "./components/Spinner/Spinner";
 import Error from "./components/Error/Error";
 import { useFetch } from "./hooks/useFetch";
 import MovieDetails from "./components/MovieDetails/MovieDetails";
+import { WatchedProps } from "./types";
+import { useLocalStorage } from "./hooks/useLocalStorage";
 
 // const tempMovieData = [
 //   {
@@ -40,39 +42,36 @@ import MovieDetails from "./components/MovieDetails/MovieDetails";
 //   },
 // ];
 
-const tempWatchedData = [
-  {
-    imdbID: "tt1375666",
-    Title: "Inception",
-    Year: "2010",
-    Poster:
-      "https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_SX300.jpg",
-    runtime: 148,
-    imdbRating: 8.8,
-    userRating: 10,
-  },
-  {
-    imdbID: "tt0088763",
-    Title: "Back to the Future",
-    Year: "1985",
-    Poster:
-      "https://m.media-amazon.com/images/M/MV5BZmU0M2Y1OGUtZjIxNi00ZjBkLTg1MjgtOWIyNThiZWIwYjRiXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg",
-    runtime: 116,
-    imdbRating: 8.5,
-    userRating: 9,
-  },
-];
+// const tempWatchedData = [
+//   {
+//     imdbID: "tt1375666",
+//     Title: "Inception",
+//     Year: "2010",
+//     Poster:
+//       "https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_SX300.jpg",
+//     runtime: 148,
+//     imdbRating: 8.8,
+//     userRating: 10,
+//   },
+//   {
+//     imdbID: "tt0088763",
+//     Title: "Back to the Future",
+//     Year: "1985",
+//     Poster:
+//       "https://m.media-amazon.com/images/M/MV5BZmU0M2Y1OGUtZjIxNi00ZjBkLTg1MjgtOWIyNThiZWIwYjRiXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg",
+//     runtime: 116,
+//     imdbRating: 8.5,
+//     userRating: 9,
+//   },
+// ];
 
 export default function App() {
-  const [watched, setWatched] = useState(tempWatchedData);
-  console.log("🚀 ~ App ~ setWatched:", setWatched);
+  const [watched, setWatched] = useLocalStorage([], "watchedList");
   const [query, setQuery] = useState("");
   const [theme, setTheme] = useState("dark");
   const [selectedMovieId, setSelectedMovieId] = useState<string>("");
-  // console.log("🚀 ~ App ~ selectedMovieId:", selectedMovieId);
   const [zIndex, setZIndex] = useState(100);
   const [movies, isLoading, error] = useFetch(query, setZIndex);
-  // console.log("🚀 ~ App ~ movies:", movies);
 
   const handleCloseMovie = () => {
     setSelectedMovieId("");
@@ -86,6 +85,13 @@ export default function App() {
   const handleBackButton = () => {
     setZIndex(100);
   };
+
+  const onDeleteMovieFromWatchList = (imdb: string) => {
+    setWatched((prevWatchMovies: WatchedProps[]) =>
+      prevWatchMovies.filter((movie: WatchedProps) => movie.imdbID !== imdb)
+    );
+  };
+
   return (
     <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
       <GlobalStyles />
@@ -115,11 +121,16 @@ export default function App() {
               <MovieDetails
                 selectedMovieId={selectedMovieId}
                 onCloseMovie={handleCloseMovie}
+                setWatched={setWatched}
               />
             ) : (
               <>
                 <Summary watched={watched} />
-                <WatchedList watched={watched} />
+
+                <WatchedList
+                  watched={watched}
+                  onDeleteMovieFromWatchList={onDeleteMovieFromWatchList}
+                />
               </>
             )}
           </Box>

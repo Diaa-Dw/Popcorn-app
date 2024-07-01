@@ -1,5 +1,3 @@
-import React from "react";
-
 import { average } from "../../utils/average";
 import { StyledSummary } from "./Summary.style";
 import { WachedMoviesProps } from "../../types";
