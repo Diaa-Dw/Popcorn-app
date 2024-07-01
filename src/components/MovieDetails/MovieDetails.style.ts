@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { respondTo } from "../../style/_responsive";
 
 export const StyledMovieDetails = styled.div`
   line-height: 1.4;
@@ -66,4 +67,15 @@ export const StyledMovieDetails = styled.div`
   .btn-add:hover {
     opacity: 0.8;
   }
+
+  
+
+  ${respondTo.small`
+  
+  section{
+  padding:1rem;
+  }
+  `}
+
+  
 `;

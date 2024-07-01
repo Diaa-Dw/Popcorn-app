@@ -25,7 +25,7 @@ function MovieDetails({
     Runtime: runtime,
     Year: year,
     imdbRating,
-    Plot: plot,
+    Plkot: plot,
     Released: released,
     Actors: actors,
     Director: director,

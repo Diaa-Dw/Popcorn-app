@@ -9,7 +9,7 @@ export const StyledSearch = styled.input`
   border-radius: 0.7rem;
   width: 40rem;
   transition: all 0.2s ease-in-out;
-  color: var(--color-background-500);
+  color: ${({ theme }) => theme.colors.textDark};
 
   /* background-color: var(--color-background-900); */
   background: ${({ theme }) => theme.colors.primaryLight};
@@ -34,4 +34,15 @@ export const StyledSearch = styled.input`
   }
 
   `}
+
+  ${respondTo.small`
+
+font-size: 1.4rem;
+width: 20rem;
+
+  &:focus {
+  transform: scaleX(1);
+}
+
+`}
 `;

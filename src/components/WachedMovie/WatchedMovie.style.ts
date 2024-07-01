@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { respondTo } from "../../style/_responsive";
 
 export const StyledWatchedMovie = styled.li`
   position: relative;
@@ -40,25 +41,40 @@ export const StyledWatchedMovie = styled.li`
     gap: 0.8rem;
   }
 
-
   .btn-delete {
-  position: absolute;
-  right: 2.4rem;
+    position: absolute;
+    right: 2.4rem;
 
-  height: 2.8rem;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  border: none;
-  background-color: var(--color-red);
-  color: var(--color-background-900);
-  font-size: 1.2rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.3s;
-}
+    height: 2.8rem;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: none;
+    background-color: ${({ theme }) => theme.colors.red};
+    color: ${({ theme }) => theme.colors.background900};
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
 
-.btn-delete:hover {
-  background-color: var(--color-red-dark);
-}
+  .btn-delete:hover {
+    background-color: ${({ theme }) => theme.colors.redDark};
+  }
 
+  ${respondTo.small`
+  
+  padding: 1.6rem 1.2rem;
+  
+  font-size: 1.4rem;
+
+    h3 {
+    font-size: 1.6rem;
+    font-weight:600;
+  }
+
+    .btn-delete {
+        height: 2.2rem;
+
+  }
+  `}
 `;

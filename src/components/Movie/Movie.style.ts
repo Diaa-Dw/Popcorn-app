@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { respondTo } from "../../style/_responsive";
 
 export const StyledMovie = styled.li`
   position: relative;
@@ -39,4 +40,12 @@ export const StyledMovie = styled.li`
     align-items: center;
     gap: 0.8rem;
   }
+
+  ${respondTo.small`
+
+  padding: 1.6rem 1.2rem;
+  h3{
+  font-size: 1.4rem;
+  }
+  `}
 `;

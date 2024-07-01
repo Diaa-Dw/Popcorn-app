@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { respondTo } from "../../style/_responsive";
 
 export const StyledSummary = styled.div`
   padding: 2.2rem 3.2rem 1.8rem 3.2rem;
@@ -24,4 +25,19 @@ export const StyledSummary = styled.div`
     align-items: center;
     gap: 0.8rem;
   }
+
+  ${respondTo.small`
+  padding: 1.5rem 1rem 1.5rem 1rem;
+  h2{
+  font-size:1.4rem;
+    justify-content: center;
+  }
+
+
+  p{
+  font-size:1.3rem;
+  gap:0.4rem;
+  }
+
+  `}
 `;
