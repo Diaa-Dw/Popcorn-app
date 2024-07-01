@@ -80,7 +80,7 @@ export type ToggleThemeProps = {
 
 export type MovieProps = {
   movie: movieProps;
-  setSelectedMovieId: Dispatch<SetStateAction<string>>;
+  setSelectedMovieId: (imdb: string) => void;
 };
 
 export type UseFetchProps = [

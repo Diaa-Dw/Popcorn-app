@@ -3,9 +3,7 @@ import { StyledMovie } from "./Movie.style";
 
 function Movie({ movie, setSelectedMovieId }: MovieProps) {
   const onSelectMovie = () => {
-    setSelectedMovieId((prevId: string) =>
-      prevId === movie.imdbID ? "" : movie.imdbID
-    );
+    setSelectedMovieId(movie.imdbID);
   };
   return (
     <StyledMovie key={movie.imdbID} onClick={onSelectMovie}>

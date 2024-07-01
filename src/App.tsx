@@ -78,7 +78,7 @@ export default function App() {
   };
 
   const handleSelectMovie = (id: string) => {
-    setSelectedMovieId(id);
+    setSelectedMovieId((prevId: string) => (prevId === id ? "" : id));
     setZIndex(100);
   };
 

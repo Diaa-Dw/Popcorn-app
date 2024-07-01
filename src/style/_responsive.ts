@@ -18,12 +18,20 @@ const breakpoints: BreakpointsProps = {
 export const respondTo = Object.keys(breakpoints).reduce(
   (accumulator, label) => {
     const key = label as keyof BreakpointsProps;
-    accumulator[key] = (...args: any[]) => css`
+    accumulator[key] = (
+      first: TemplateStringsArray,
+      ...interpolations: any[] // Adjust to any[] if you are not using specific CSSInterpolation types
+    ) => css`
       @media (max-width: ${breakpoints[key]}) {
-        ${css(...args)}
+        ${css(first, ...interpolations)}
       }
     `;
     return accumulator;
   },
-  {} as { [key in keyof BreakpointsProps]: (...args: any[]) => CSSProp }
+  {} as {
+    [key in keyof BreakpointsProps]: (
+      first: TemplateStringsArray,
+      ...interpolations: any[] // Adjust to any[] if you are not using specific CSSInterpolation types
+    ) => CSSProp;
+  }
 );
