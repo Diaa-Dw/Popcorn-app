@@ -21,7 +21,7 @@ export const useFetch = (
         setZIndex(1);
         setIsLoading(true);
         const response = await fetch(
-          `http://www.omdbapi.com/?apikey=${OMDP_API}&s=${query}`,
+          `https://www.omdbapi.com/?apikey=${OMDP_API}&s=${query}`,
           { signal }
         );
 

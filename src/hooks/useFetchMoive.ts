@@ -22,7 +22,7 @@ export const useFetchMovie = (selectedMovieId: string): useFetchMovieProps => {
         // }, 10000); // Set your timeout duration (e.g., 5000ms = 5s)
 
         const response = await fetch(
-          `http://www.omdbapi.com/?apikey=${OMDP_API}&i=${selectedMovieId}`,
+          `https://www.omdbapi.com/?apikey=${OMDP_API}&i=${selectedMovieId}`,
           { signal }
         );
 
