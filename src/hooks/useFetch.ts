@@ -36,7 +36,7 @@ export const useFetch = (
         console.log(data);
       } catch (error) {
         const err = error as Error;
-        console.log(err.message);
+        console.log(err);
         setError(err.message);
       } finally {
         setIsLoading(false);
