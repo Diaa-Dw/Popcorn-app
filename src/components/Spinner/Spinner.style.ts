@@ -1,10 +1,11 @@
 import styled from "styled-components";
 
 export const Loader = styled.div`
-position: absolute;
-left: 50%;
-top:50%;
-transform: translate(-50%, -50%);
+  position: absolute;
+  z-index: 200;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   width: 48px;
   height: 48px;
   border-radius: 50%;
